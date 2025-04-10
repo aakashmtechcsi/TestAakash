@@ -16,13 +16,13 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo "Deploying to staging..."
-                bat 'deploy_to_staging.bat'  
+                bat 'C:\Users\Aakash\Desktop\test-aakash\Staging\staging.bat'  
             }
         }
         stage('Deploy to Production') {
             steps {
                 echo "Deploying to production..."
-                bat 'deploy_to_production.bat'  
+                bat 'C:\Users\Aakash\Desktop\test-aakash\Production\production.bat'  
             }
         }
     }
