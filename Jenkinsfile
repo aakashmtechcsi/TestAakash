@@ -3,18 +3,38 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'javac HelloWorld.java'
+                echo "Building the application..."
+                sh 'javac HelloWorld.java'  
             }
         }
         stage('Test') {
             steps {
-                sh 'echo "Running tests..."'
+                echo "Running tests..."
+                sh 'echo "Tests executed successfully!"'
             }
         }
-        stage('Deploy') {
+        stage('Deploy to Staging') {
             steps {
-                sh 'echo "Deploying application..."'
+                echo "Deploying to staging..."
+                bat 'deploy_to_staging.bat'  
             }
+        }
+        stage('Deploy to Production') {
+            steps {
+                echo "Deploying to production..."
+                bat 'deploy_to_production.bat'  
+            }
+        }
+    }
+    post {
+        always {
+            echo "Pipeline execution completed!"
+        }
+        success {
+            echo "Build, Test, and Deploy stages executed successfully."
+        }
+        failure {
+            echo "Pipeline failed during one of the stages."
         }
     }
 }
